@@ -31,6 +31,9 @@ async fn main() {
     // init logger
     simple_logger::SimpleLogger::new()
         .with_module_level("html5ever", log::LevelFilter::Off)
+        .with_module_level("surrealdb", log::LevelFilter::Off)
+        .with_module_level("tungstenite", log::LevelFilter::Off)
+        .with_module_level("tokio_tungstenite", log::LevelFilter::Off)
         .env()
         .init()
         .expect("couldn't initialize the logger");
@@ -67,8 +70,8 @@ async fn main() {
         )
         .fallback(leptos_axum::file_and_error_handler::<AppState, _>(shell))
         .route("/himene/sitemap.xml", get(generate_himene_sitemap))
-        .route("/drive/genog/:timestamp/himene/:id", get(generate_og_img))
-        .route("/drive/gentw/:timestamp/himene/:id", get(generate_tw_img))
+        .route("/drive/genog/{timestamp}/himene/{id}", get(generate_og_img))
+        .route("/drive/gentw/{timestamp}/himene/{id}", get(generate_tw_img))
         .layer(compression)
         .layer(middleware::from_fn(cache::handle))
         .with_state(state);
