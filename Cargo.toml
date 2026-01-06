@@ -17,7 +17,7 @@ axum = { version = "0.8", features = ["macros"] }
 
 log = "0.4.26"
 thiserror = "2"
-ammonia = "4.0.0"
+ammonia = "4.1.2"
 surrealdb = "2.3.3"
 chrono = { version = "0.4.40", features = ["serde"] }
 eserde = { version = "0.1.2", features = ["derive"] }
